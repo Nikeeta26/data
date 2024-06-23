@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mini whatapp</title>
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <h2>all chats</h2>
+   <% for(let chat of chats){ %>
+    <div class="chat">
+        <p>From :<i> <%= chat.from%> </i></p>
+        <div class="message">
+            <p>Message :  <i><%= chat.message%> </i></p>
+            <form method="get" action="http://localhost:8080/chats/<%= chat.id%>/edit"><button>edit</button></form><br>
+            <form action="/chats/<%= chat._id%>?_method=DELETE" method="post"><button>Delete</button></form>
+            <form action="/chats/<%= chat._id%>" method="get"><button>show</button></form>
+        </div>
+        <p class="received">Received By: <i> <%= chat.to%> </i></p>
+        <p class="received" name=" created_at"><%= chat. created_at.toString().split(" ")[4] %></p>
+        <p class="received" name=" created_at"><%= chat. created_at.toString().split(" ").splice(0,4).join(": ") %></p>
+        <form  method="get" action="http://localhost:8080/chats/new"><button>Create new chat</button></form>
+        
+    </div>
+       <hr>
+   <% } %>
+<script src="/app.js"></script>
+</body>
+</html>
